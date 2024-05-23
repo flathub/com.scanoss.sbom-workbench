@@ -13,7 +13,7 @@ finish-args:
   - "--socket=pulseaudio"
   - "--share=network"  
   - "--device=dri"    
-  - "--filesystem=host:create"
+  - "--filesystem=home:rw"
 modules:
   - name: sbom-workbench
     buildsystem: simple
