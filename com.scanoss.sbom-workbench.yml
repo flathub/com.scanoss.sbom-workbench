@@ -13,9 +13,7 @@ finish-args:
   - "--socket=pulseaudio"
   - "--share=network"  
   - "--device=dri"    
-  - "--persist=.scanoss"
-  - "--persist=scanoss-workspace"
-  - "--persist=.pki"
+  - "--filesystem=home:rw"
 modules:
   - name: sbom-workbench
     buildsystem: simple
