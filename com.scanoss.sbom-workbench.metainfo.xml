@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.scanoss.sbom-workbench</id>
+
+  <developer id="com.scanoss">
+    <name>SCANOSS</name>
+  </developer>
+  <developer_name>SCANOSS</developer_name>
+
+  <name>SCANOSS SBOM Workbench</name>
+  <summary>Graphical user interface to scan and audit your source code</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-only</project_license>
+
+  <categories>
+    <category>Development</category>
+  </categories>
+
+  <keywords>
+    <keyword>SBOM</keyword>
+    <keyword>SCA</keyword>
+    <keyword>security</keyword>
+    <keyword>licenses</keyword>
+    <keyword>scanoss</keyword>
+  </keywords>
+
+  <url type="homepage">https://github.com/scanoss/sbom-workbench</url>
+  <url type="bugtracker">https://github.com/scanoss/sbom-workbench/issues</url>
+  <url type="vcs-browser">https://github.com/scanoss/sbom-workbench</url>
+  <url type="help">https://github.com/scanoss/sbom-workbench#readme</url>
+
+  <launchable type="desktop-id">com.scanoss.sbom-workbench.desktop</launchable>
+
+  <description>
+    <p>
+      The SBOM Workbench is a graphical user interface to scan and audit source code using the SCANOSS API.
+    </p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://download.scanoss.com/sbom-workbench/flathub/scanoss_sbom-workbench_01.png</image>
+      <caption>Main dashboard</caption>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="1.21.0" date="2025-05-07">
+      <url type="release-notes">https://github.com/scanoss/sbom-workbench/releases/tag/v1.21.0</url>
+      <description>
+        <p>Upgraded scanoss.js SDK, added new package-lock.json v1 parser and minor fixes.</p>
+      </description>
+    </release>
+  </releases>
+</component>
