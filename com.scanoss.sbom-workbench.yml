@@ -10,33 +10,27 @@ rename-desktop-file: scanoss-workbench.desktop
 
 finish-args:
   - "--share=ipc"
-  - "--socket=wayland"
-  - "--socket=fallback-x11"
+  - "--device=dri"
+  - "--socket=x11"
   - "--socket=pulseaudio"
   - "--share=network"
-  - "--device=dri"
   - "--filesystem=home:rw"
 
 modules:
   - name: sbom-workbench
     buildsystem: simple
     build-commands:
-      # Handle whatever AppImage the checker pulls
       - chmod +x *.AppImage
       - ./*.AppImage --appimage-extract
 
       - install -dm755 "${FLATPAK_DEST}/bin" "${FLATPAK_DEST}/lib/sbom-workbench"
       - cp -r squashfs-root/* "${FLATPAK_DEST}/lib/sbom-workbench"
 
-      - install -Dm644 "scanoss-logo.jpg" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.scanoss.sbom-workbench.png"
+      - install -Dm644 "scanoss-logo.jpg" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.scanoss.sbom-workbench.jpg"
+
       - install -Dm755 "run.sh" "${FLATPAK_DEST}/bin/com.scanoss.sbom-workbench"
 
-      - desktop-file-install \
-          --dir="${FLATPAK_DEST}/share/applications" \
-          --remove-key=X-AppImage-Version \
-          --set-key=Exec --set-value=com.scanoss.sbom-workbench \
-          --set-key=Icon --set-value=com.scanoss.sbom-workbench \
-          squashfs-root/scanoss-workbench.desktop
+      - desktop-file-install --dir="${FLATPAK_DEST}/share/applications" --remove-key=X-AppImage-Version --set-key=Exec --set-value=com.scanoss.sbom-workbench --set-key=Icon --set-value=com.scanoss.sbom-workbench squashfs-root/scanoss-workbench.desktop
 
       - install -Dm644 -t "${FLATPAK_DEST}/share/metainfo" com.scanoss.sbom-workbench.metainfo.xml
 
@@ -56,5 +50,6 @@ modules:
 
       - type: file
         path: scanoss-logo.jpg
+
       - type: file
         path: run.sh
