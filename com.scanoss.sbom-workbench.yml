@@ -1,42 +1,55 @@
 app-id: com.scanoss.sbom-workbench
 base: org.electronjs.Electron2.BaseApp
-base-version: "23.08"
+base-version: "24.08"
 runtime: org.freedesktop.Platform
-runtime-version: "23.08"
+runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
 separate-locales: false
 command: com.scanoss.sbom-workbench
 rename-desktop-file: scanoss-workbench.desktop
+
 finish-args:
   - "--share=ipc"
+  - "--device=dri"
   - "--socket=x11"
   - "--socket=pulseaudio"
-  - "--share=network"  
-  - "--device=dri"    
+  - "--share=network"
   - "--filesystem=home:rw"
+
 modules:
   - name: sbom-workbench
     buildsystem: simple
     build-commands:
-      - chmod +x sbom-workbench-1.21.0-linux-x86_64.AppImage
-      - ./sbom-workbench-1.21.0-linux-x86_64.AppImage --appimage-extract
+      - chmod +x *.AppImage
+      - ./*.AppImage --appimage-extract
 
       - install -dm755 "${FLATPAK_DEST}/bin" "${FLATPAK_DEST}/lib/sbom-workbench"
-      - cp -r squashfs-root/* "${FLATPAK_DEST}/lib/sbom-workbench"      
+      - cp -r squashfs-root/* "${FLATPAK_DEST}/lib/sbom-workbench"
 
       - install -Dm644 "scanoss-logo.jpg" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.scanoss.sbom-workbench.png"
+
       - install -Dm755 "run.sh" "${FLATPAK_DEST}/bin/com.scanoss.sbom-workbench"
+
       - desktop-file-install --dir="${FLATPAK_DEST}/share/applications" --remove-key=X-AppImage-Version --set-key=Exec --set-value=com.scanoss.sbom-workbench --set-key=Icon --set-value=com.scanoss.sbom-workbench squashfs-root/scanoss-workbench.desktop
 
-      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo com.scanoss.sbom-workbench.metainfo.xml
+      - install -Dm644 -t "${FLATPAK_DEST}/share/metainfo" com.scanoss.sbom-workbench.metainfo.xml
+
     sources:
       - type: file
         url: https://github.com/scanoss/sbom-workbench/releases/download/v1.21.0/sbom-workbench-1.21.0-linux-x86_64.AppImage
         sha256: 1ffb4b9e911ade147f07e008261a6aecdb32fd6e48f964869f3d5932dd7732de
+        x-checker-data:
+          type: github
+          repo: scanoss/sbom-workbench
+          asset_regex: '^sbom-workbench-([0-9.]+)-linux-x86_64\.AppImage$'
+          tag-pattern: '^v?([0-9.]+)$'
+          version-template: '$1'
+
       - type: file
-        url: https://download.scanoss.com/sbom-workbench/flathub/com.scanoss.sbom-workbench.metainfo.xml
-        sha256: dbc3b0914f7587f3432d9b0dac2201e5a0defc3a18496ec87086d596f5035086
+        path: com.scanoss.sbom-workbench.metainfo.xml
+
       - type: file
         path: scanoss-logo.jpg
+
       - type: file
         path: run.sh
