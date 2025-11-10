@@ -48,6 +48,12 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.25.0" date="2025-11-05">
+      <url type="release-notes">https://github.com/scanoss/sbom-workbench/releases/tag/v1.25.0</url>
+      <description>
+        <p>Upgraded scanoss.js to v0.26.0, added fh2 support and other minor features.</p>
+      </description>
+    </release>
     <release version="1.21.0" date="2025-05-07">
       <url type="release-notes">https://github.com/scanoss/sbom-workbench/releases/tag/v1.21.0</url>
       <description>
