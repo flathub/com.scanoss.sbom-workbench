@@ -26,7 +26,7 @@ modules:
       - install -dm755 "${FLATPAK_DEST}/bin" "${FLATPAK_DEST}/lib/sbom-workbench"
       - cp -r squashfs-root/* "${FLATPAK_DEST}/lib/sbom-workbench"
 
-      - install -Dm644 "scanoss-logo.jpg" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.scanoss.sbom-workbench.jpg"
+      - install -Dm644 "scanoss-logo.jpg" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.scanoss.sbom-workbench.png"
 
       - install -Dm755 "run.sh" "${FLATPAK_DEST}/bin/com.scanoss.sbom-workbench"
 
