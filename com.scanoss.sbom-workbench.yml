@@ -41,9 +41,8 @@ modules:
         x-checker-data:
           type: github
           repo: scanoss/sbom-workbench
-          asset_regex: '^sbom-workbench-([0-9.]+)-linux-x86_64\.AppImage$'
+          asset-name: sbom-workbench-$version-linux-x86_64-app.AppImage
           tag-pattern: '^v?([0-9.]+)$'
-          version-template: '$1'
 
       - type: file
         path: com.scanoss.sbom-workbench.metainfo.xml
